@@ -19,6 +19,6 @@ where Id = @Id
 if(select Id
 from @info) is not null 
 begin
-   select 'Данные запчасти "' + part_name + '" обновлены'
+   select 'Приход запчастей по накладной "' + part_name + '" обновлен'
    from @info
 end

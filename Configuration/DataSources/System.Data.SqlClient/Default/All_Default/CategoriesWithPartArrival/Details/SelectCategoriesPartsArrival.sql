@@ -2,9 +2,9 @@ Select
 pa.Id,
 invoice_number,
 part_name,
-pa.part_price,
 pa.create_date as arrival_date,
-pa.part_quantity
+pa.part_quantity,
+pa.part_price * pa.part_quantity as sum_price
 
 from PartArrival pa
 join Parts p on pa.part_id = p.Id

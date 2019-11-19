@@ -41,7 +41,7 @@
             "IsPrintable": false
           },
           {
-            "Code": "part_price",
+            "Code": "sum_price",
             "Name": "Стоимость",
             "Position": 6,
             "IsPrintable": false,
