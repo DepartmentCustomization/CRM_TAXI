@@ -18,7 +18,9 @@
             "Position": 2,
             "IsPrintable": false,
             "SqlName": "invoice_number",
-            "FilterParameterCode": "@invoice_number"
+            "FilterParameterCode": "@invoice_number",
+            "ReferenceKeyCode": "Id",
+            "ReferenceSectionCode": "PartsArrival"
           },
           {
             "Code": "part_name",

@@ -18,7 +18,9 @@
             "Position": 2,
             "IsPrintable": false,
             "SqlName": "invoice_consumption",
-            "FilterParameterCode": "@invoice_consumption"
+            "FilterParameterCode": "@invoice_consumption",
+            "ReferenceKeyCode": "Id",
+            "ReferenceSectionCode": "PartsChange"
           },
           {
             "Code": "part_name",

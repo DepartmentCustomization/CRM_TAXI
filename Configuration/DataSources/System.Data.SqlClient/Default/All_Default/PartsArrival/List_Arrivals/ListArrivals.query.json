@@ -1,0 +1,70 @@
+{
+    "ModelType": "Query",
+    "Code": "List_Arrivals",
+    "Name": "List_Arrivals",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+        {
+            "Code": "Id",
+            "Name": "Id",
+            "Position": 1,
+            "ViewState": "Hidden",
+            "IsPrintable": false
+          },
+          {
+            "Code": "category_name",
+            "Name": "Категория",
+            "Position": 2
+          },
+          {
+            "Code": "part_name",
+            "Name": "Наименование",
+            "Position": 3
+          },
+          {
+            "Code": "articul",
+            "Name": "Артикул",
+            "Position": 4
+          },
+          {
+            "Code": "manufacturer",
+            "Name": "Производитель",
+            "Position": 5
+          },
+          {
+            "Code": "provider",
+            "Name": "Поставщик",
+            "Position": 6
+          },
+          {
+            "Code": "part_price",
+            "Name": "Цена",
+            "Position": 7
+          },
+          {
+            "Code": "part_quantity",
+            "Name": "Кол-во",
+            "Position": 8
+          },
+          {
+            "Code": "sum_price",
+            "Name": "Стоимость",
+            "Position": 9
+          }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      }
+    ]
+  }

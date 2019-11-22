@@ -1,0 +1,8 @@
+{
+  "Icon": "list",
+  "Position": 1,
+  "IconColor": "blue",
+  "ModelType": "DashboardGroup",
+  "Code": "Work",
+  "Name": "Рабочие таблицы"
+}
