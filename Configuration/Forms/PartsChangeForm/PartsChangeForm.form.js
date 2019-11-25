@@ -10,13 +10,11 @@
                 this.navigateTo('sections/PartsChange');
             }
             if (url.includes('view')==true) {
-                console.log(url.includes('view'));
+              //  console.log(url.includes('view'));
                 this.form.setControlVisibility('update_part_change', false);
-                //document.getElementById('update_part_change').disabled = true;
             }
             if (this.state == "update") {
 
-                //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
 
                 let changeParam = [
@@ -74,7 +72,7 @@
             };
 
             this.checkSaveAvailable();
-            // При изменении полей проверить, можно ли сохранять/очищать
+            // При изменении полей проверить, можно ли сохранять
             this.form.onControlValueChanged('cars_id', this.checkSaveAvailable);
             this.form.onControlValueChanged('cars_id', this.checkCarAvailable);
 
@@ -189,10 +187,6 @@
                     }
                 });
             }
-        },
-
-        goBack: function() {
-
         }
 
     };
