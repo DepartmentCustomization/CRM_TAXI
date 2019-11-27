@@ -3,6 +3,7 @@
   "Code":"Import_RunCar",
   "Name":"Загрузка пробега",
   "SelectRowsQueryCode":"Import_RunCar_SelectRows",
+  "IsVisible": false,
   "Add":
   {
     "AddType":"General",
