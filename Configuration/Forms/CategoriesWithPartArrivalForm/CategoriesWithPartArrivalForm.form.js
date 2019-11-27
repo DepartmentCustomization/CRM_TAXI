@@ -172,6 +172,8 @@
                     if (data != undefined) {
                         this.form.markAsSaved();
                         this.openPopUpInfoDialog(data.rows[0].values[0]);
+                        this.clearArrivalValues();
+                        
                     }
                     else {
                         this.openPopUpInfoDialog('Ошибка изменения данных');

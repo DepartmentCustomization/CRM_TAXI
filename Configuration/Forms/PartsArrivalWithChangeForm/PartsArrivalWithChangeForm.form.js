@@ -10,7 +10,7 @@
 
             this.form.disableControl('part');
 
-        // При изменении проверять, достаточно ли заполнены поля
+            // При изменении проверять, достаточно ли заполнены поля
             this.form.onControlValueChanged('car', this.checkSaveChangeAvailable);
             this.form.onControlValueChanged('part', this.checkSaveChangeAvailable);
             this.form.onControlValueChanged('invoice_consumption', this.checkSaveChangeAvailable);
@@ -35,7 +35,7 @@
                         {
                             key: '@cars_id',
                             value: this.form.getControlValue('car')
-                        },                       
+                        },
                         {
                             key: '@user_id',
                             value: this.user
@@ -54,37 +54,36 @@
             }.bind(this));
 
         },  //END INIT 
-        
-        getAutoForQuery: function() {
-            if(this.form.getControlValue('car')) {
+
+        getAutoForQuery: function () {
+            if (this.form.getControlValue('car')) {
 
                 let partParams = [
                     { parameterCode: '@car', parameterValue: this.form.getControlValue('car') },
                     { parameterCode: '@category', parameterValue: this.form.getControlValue('category_id') }
                 ];
-                
+
                 this.form.setControlParameterValues('part', partParams);
 
             }
         },
-        
-        checkPartChooseAvailable: function() {
-             if(this.form.getControlValue('car') != null && this.form.getControlValue('car') != "")
-             {
+
+        checkPartChooseAvailable: function () {
+            if (this.form.getControlValue('car') != null && this.form.getControlValue('car') != "") {
                 this.form.enableControl('part');
-             }
-             else {
-                 if(!this.form.disableControl('part')){
+            }
+            else {
+                if (!this.form.disableControl('part')) {
                     this.form.disableControl('part');
-                 }
-             }
+                }
+            }
         },
 
-        checkSaveChangeAvailable: function() {
+        checkSaveChangeAvailable: function () {
             if (
-            this.form.getControlValue('car') != null && this.form.getControlValue('car') != ""
-            && this.form.getControlValue('invoice_consumption') != null 
-            && this.form.getControlValue('invoice_consumption') != ""
+                this.form.getControlValue('car') != null && this.form.getControlValue('car') != ""
+                && this.form.getControlValue('invoice_consumption') != null
+                && this.form.getControlValue('invoice_consumption') != ""
             ) {
                 document.getElementById('save_part_change').disabled = false;
             }

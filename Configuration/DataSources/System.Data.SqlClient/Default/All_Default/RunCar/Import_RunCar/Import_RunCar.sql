@@ -3,6 +3,6 @@ Insert into dbo.Import_RunCar (
 				run_km
 				)
 	Values (
-	       (select  top 1 Id from Cars where cars_name = @car),
+	       (select top 1 Id from Cars where cars_name = @car),
 			@run_km
 			)

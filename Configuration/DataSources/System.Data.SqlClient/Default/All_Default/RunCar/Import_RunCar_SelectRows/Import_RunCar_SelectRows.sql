@@ -14,26 +14,32 @@ i.run_km
 from Import_RunCar i
 join Cars c on i.car_id = c.id
 
+
+
 Insert into @cars_maxRun
-select car_id, isnull(max(run_km),0) run 
-from RunCar
-where car_id in (select car_id from @main_tab)
-group by car_id
+select i.car_id, isnull(max(rc.run_km),0) run 
+from Import_RunCar i 
+left join RunCar rc on i.car_id = rc.car_id
+--where rc.car_id in (select car_id from @main_tab)
+group by i.car_id
+
 
 Insert into @check_tab
 Select 
 m.import_id,
 m.cars_name,
 m.run_km,
-isnull(count(rc.car_id),0) month_import_qty,
+isnull(count(z.car_id),0) month_import_qty,
 iif(cm.run_km > m.run_km , 0, 1 )
 
 from Cars c
 join @main_tab m on m.cars_name = c.cars_name
-join @cars_maxRun cm on cm.car_id = m.car_id
-left join RunCar rc on rc.car_id = m.car_id
-where year(rc.create_date) = year(current_timestamp) 
-and month(rc.create_date) = month(current_timestamp)
+left join @cars_maxRun cm on cm.car_id = m.car_id
+left join( select car_id, run_km 
+           from RunCar 
+		   where year(create_date) = year(current_timestamp) 
+           and month(create_date) = month(current_timestamp) ) z on z.car_id = m.car_id
+
 group by 
 m.cars_name,
 m.run_km,
@@ -48,6 +54,7 @@ end
 	   import_month_qty,
 	   run_km_more
 	   from @check_tab
+	   
 	   
 	where
     #filter_columns#

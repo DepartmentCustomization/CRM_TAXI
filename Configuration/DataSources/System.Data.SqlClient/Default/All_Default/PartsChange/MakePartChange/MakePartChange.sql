@@ -8,7 +8,7 @@ declare @info table (Id int, part_id int, car_id int );
 --declare @user_id nvarchar(128) = (select top 1 UserId from CRM_TAXI_System.dbo.[User]);
 
 declare @part_price float = (select part_price from Parts where Id = @part_id);
-declare @run_km_install_day int = (select run_km from RunCar 
+declare @run_km_install_day int = (select isnull(run_km,0) from RunCar
                                    where car_id = @cars_id and create_date =
                                         (select MAX(create_date) from RunCar where car_id = @cars_id)
 																		);
