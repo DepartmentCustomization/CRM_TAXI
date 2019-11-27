@@ -22,6 +22,18 @@
 		  "Name": "Пробег",
 		  "Position": 2,
 		  "IsPrintable": false
+		},
+		{
+		  "Code": "import_month_qty",
+		  "Name": "Загрузок по авто в этом месяце",
+		  "Position": 3,
+		  "IsPrintable": false
+		},
+		{
+		  "Code": "run_km_more",
+		  "Name": "Сопоставление пробега",
+		  "Position": 4,
+		  "IsPrintable": false
 		}
 	  ],
 	"Parameters": [

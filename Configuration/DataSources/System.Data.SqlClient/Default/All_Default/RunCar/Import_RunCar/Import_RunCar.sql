@@ -6,4 +6,3 @@ Insert into dbo.Import_RunCar (
 	       (select Id from Cars where cars_name = @car),
 			@run_km
 			)
-			----------
