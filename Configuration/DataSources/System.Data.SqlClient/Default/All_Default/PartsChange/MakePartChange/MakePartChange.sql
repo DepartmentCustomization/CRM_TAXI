@@ -12,7 +12,7 @@ declare @run_km_install_day int = (select isnull(run_km,0) from RunCar
                                    where car_id = @cars_id and create_date =
                                         (select MAX(create_date) from RunCar where car_id = @cars_id)
 																		);
-
+begin
 INSERT INTO [dbo].[PartChange]
            ([part_id]
            ,[cars_id]
@@ -52,12 +52,14 @@ INSERT INTO [dbo].[PartChange]
         and Id < (select top 1 Id from @info)
 		end
 
-		Update Parts
-		set part_quantity -=1
-		where Id = @part_id
+		
+end
 
 	if(select Id from @info) is not null
     begin
+        Update Parts
+		set part_quantity -=1
+		where Id = @part_id
     select 
 	'Запчасть "' + p.part_name + '" установлено в машину "' + cast(c.cars_name as nvarchar(25)) +'"'
     from @info i
