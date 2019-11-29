@@ -33,7 +33,7 @@
               {
                 "code": "NativeDataGridWidget-0",
                 "type": "NativeDataGridWidgetComponent",
-                "name": "part_change_report"
+                "name": "cars_report"
               }
             ],
             "id": "Container-1",
@@ -41,7 +41,7 @@
             "minHeight": "100px",
             "minWidth": "calc(100% - 10px)",
             "backgroundColor": "white",
-            "containerId": "part_change_report"
+            "containerId": "cars_report"
           },
           {
             "width": "auto",
