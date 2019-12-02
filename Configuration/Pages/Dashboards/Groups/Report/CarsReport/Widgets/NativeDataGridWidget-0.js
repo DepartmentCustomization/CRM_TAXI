@@ -23,18 +23,23 @@
                 }, {
                     dataField: 'create_year',
                     caption: 'Год выпуска',
+                    alignment: 'center'
                 }, {
                     dataField: 'start_period_run',
                     caption: 'Пробег на начало периода',
+                    alignment: 'center'
                 }, {
                     dataField: 'end_period_run',
                     caption: 'Пробег на конец периода',
+                    alignment: 'center'
                 }, {
                     dataField: 'pediod_run',
                     caption: 'Пробег за период',
+                    alignment: 'center'
                 }, {
                     dataField: 'change_price',
                     caption: 'Стоимость расхода',
+                    alignment: 'center'
                 }
             ],
             // summary: {

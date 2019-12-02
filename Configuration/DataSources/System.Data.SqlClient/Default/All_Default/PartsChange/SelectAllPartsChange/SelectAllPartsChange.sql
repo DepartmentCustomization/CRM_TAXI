@@ -6,7 +6,7 @@ Select
     p.articul,
     p.manufacturer,
     c.cars_name,
-    p.part_price
+    pc.part_price
 
 from PartChange pc
     join Parts p on pc.part_id = p.Id

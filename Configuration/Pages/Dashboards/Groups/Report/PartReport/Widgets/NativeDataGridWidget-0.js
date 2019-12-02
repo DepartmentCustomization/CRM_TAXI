@@ -25,12 +25,15 @@
                 }, {
                     dataField: 'part_price',
                     caption: 'Цена',
+                    alignment: 'center'
                 }, {
                     dataField: 'qty',
                     caption: 'Количество',
+                    alignment: 'center'
                 }, {
                     dataField: 'sum_price',
                     caption: 'Стоимость',
+                    alignment: 'center'
                 }
             ],
             // summary: {
