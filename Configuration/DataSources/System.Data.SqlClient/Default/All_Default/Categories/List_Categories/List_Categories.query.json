@@ -16,7 +16,9 @@
         "Code": "category_name",
         "Name": "Название",
         "Position": 2,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "category_name",
+        "FilterParameterCode": "@category_name"
       }
     ],
     "Parameters": [

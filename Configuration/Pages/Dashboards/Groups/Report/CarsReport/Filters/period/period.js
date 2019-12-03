@@ -25,7 +25,7 @@
         let dayTo = currentDate.getDate();
         let defaultValue = {
             // убрать  - 1 
-                dateFrom: new Date(year, monthFrom , '01'),
+                dateFrom: new Date(year, monthFrom-1 , dayTo),
                 dateTo: new Date( year, monthFrom , dayTo)
             }
         this.setDefaultValue(defaultValue); 

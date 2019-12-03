@@ -2,7 +2,7 @@
     return {
         config: {
             query: {
-                code: 'CarsReport',
+                code: 'ChangeOnDateReport',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -11,34 +11,44 @@
             },
             columns: [
                 {
-                    dataField: 'number',
+                    dataField: 'part_name',
+                    caption: 'Наименование запчасти',
+                }, {
+                    dataField: 'articul',
+                    caption: 'Артикул',
+                    alignment: 'center'
+                }, {
+                    dataField: 'manufacturer',
+                    caption: 'Производитель',
+                    alignment: 'center'
+                }, {
+                    dataField: 'provider',
+                    caption: 'Поставщик',
+                    alignment: 'center'
+                }, {
+                    dataField: 'run_km_period',
+                    caption: 'Эксплуатационный период (км)',
+                    alignment: 'center',
+                }, {
+                    dataField: 'run_day_period',
+                    caption: 'Эксплуатационный период (дни)',
+                    alignment: 'center'
+                }, {
+                    dataField: 'cars_number',
                     caption: 'Госномер автомобиля',
-                }, {
-                    dataField: 'name',
-                    caption: 'Позывной',
-                    alignment: 'center' 
-                }, {
-                    dataField: 'mark',
-                    caption: 'Марка автомобиля',
-                }, {
-                    dataField: 'create_year',
-                    caption: 'Год выпуска',
                     alignment: 'center'
                 }, {
-                    dataField: 'start_period_run',
-                    caption: 'Пробег на начало периода',
+                    dataField: 'part_price',
+                    caption: 'Цена',
+                    alignment: 'center'
+                },
+                {
+                    dataField: 'qty',
+                    caption: 'Количество',
                     alignment: 'center'
                 }, {
-                    dataField: 'end_period_run',
-                    caption: 'Пробег на конец периода',
-                    alignment: 'center'
-                }, {
-                    dataField: 'pediod_run',
-                    caption: 'Пробег за период',
-                    alignment: 'center'
-                }, {
-                    dataField: 'change_price',
-                    caption: 'Стоимость расхода',
+                    dataField: 'sum_price',
+                    caption: 'Стоимость',
                     alignment: 'center'
                 }
             ],
@@ -80,66 +90,29 @@
         },
         init: function () {
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
-            this.sub1  =  this.messageService.subscribe( 'sendCarId', this.getCarId, this);
-
-            this.dataGridInstance.onCellClick.subscribe(e => {
-              //  debugger;
-                if(e.column.dataField === "name" && e.row !== undefined){
-                    this.goToDashboard('CarChangeReport', 
-                    {queryParams: 
-                        {car_id: e.data.Id,
-                        dateTo: this.dateTo,
-                        dateFrom: this.dateFrom}
-                    });
-                }
-            });
-
             this.dataGridInstance.height = window.innerHeight - 150;
-           
+
         },
         showTopQuestionsTable: function () {
             document.getElementById('cars_report').style.display = 'block';
         },
-        getOrganizationId: function(message){
+        getOrganizationId: function (message) {
             this.car_id = message.car_id;
-        },
-        changeDateTimeValues: function (value) {
-            let trueDate;
-            if (value !== null) {
-                let date = new Date(value);
-                let dd = date.getDate();
-                let MM = date.getMonth();
-                let yyyy = date.getFullYear();
-                let HH = date.getUTCHours()
-                let mm = date.getMinutes();
-                MM += 1;
-                if ((dd.toString()).length === 1) { dd = '0' + dd; }
-                if ((MM.toString()).length === 1) { MM = '0' + MM; }
-                if ((HH.toString()).length === 1) { HH = '0' + HH; }
-                if ((mm.toString()).length === 1) { mm = '0' + mm; }
-                trueDate = dd + '.' + MM + '.' + yyyy;
-            } else {
-                trueDate = ' ';
-            }
-            return trueDate;
         },
 
         getFiltersParams: function (message) {
-
-            let period = message.package.value.values.find(f => f.name === 'period').value;
-
-            if (period !== null) {
-                if (period.dateFrom !== '' && period.dateTo !== '') {
-                    this.dateFrom = period.dateFrom;
-                    this.dateTo = period.dateTo;
+            let calendar = message.package.value.values.find(f => f.name === 'calendar').value;
+        
+            if (calendar !== null) {
+                if (calendar !== '') {
 
                     this.config.query.parameterValues = [
-                        { key: '@dateFrom', value: this.dateFrom },
-                        { key: '@dateTo', value: this.dateTo },
+                        { key: '@dateTo', value: calendar },
                     ];
                     this.loadData(this.afterLoadDataHandler);
                 }
             }
+        //    debugger;
         },
         extractOrgValues: function (val) {
             if (val !== '') {

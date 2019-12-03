@@ -58,7 +58,29 @@
           window.open(location.origin + localStorage.getItem('VirtualPath')+'/dashboard/page/CarsReport');
       });
 
-      let groupsWrapper = this.createElement('div', { className: 'group-btns' }, groupViewAppeals, groupRegAppeals, groupSearchTable, groupCall);
+      let groupCarChangeReport__icon = this.createElement('div', { className: "icon letterIcon material-icons",  innerText: 'assessment' });
+      let groupCarChangeReport__description = this.createElement('div', { className: "description", innerText: 'Пробег и расход по конкретной машине'});
+      groupCarChangeReport__icon.style.color = '#ff7961';
+      let groupCarChangeReport__borderBottom = this.createElement('div', { className: "border-bottom" });
+      let groupCarChangeReport__borderRight = this.createElement('div', { className: "border-right"});
+      let groupCarChangeReport = this.createElement('div', { className: "group", tabindex: '0' }, groupCarChangeReport__icon, groupCarChangeReport__description, groupCarChangeReport__borderBottom, groupCarChangeReport__borderRight );
+      groupCarChangeReport.addEventListener('click',  event => { 
+          window.open(location.origin + localStorage.getItem('VirtualPath')+'/dashboard/page/CarChangeReport');
+      });
+
+      let groupChangeOnDateReport__icon = this.createElement('div', { className: "icon letterIcon material-icons",  innerText: 'assignment' });
+      let groupChangeOnDateReport__description = this.createElement('div', { className: "description", innerText: 'Расход запчастей на конкретную дату'});
+      groupChangeOnDateReport__icon.style.color = '#2196F3';
+      let groupChangeOnDateReport__borderBottom = this.createElement('div', { className: "border-bottom" });
+      let groupChangeOnDateReport__borderRight = this.createElement('div', { className: "border-right"});
+      let groupChangeOnDateReport = this.createElement('div', { className: "group", tabindex: '0' }, groupChangeOnDateReport__icon, groupChangeOnDateReport__description, groupChangeOnDateReport__borderBottom, groupChangeOnDateReport__borderRight );
+      groupChangeOnDateReport.addEventListener('click',  event => { 
+          window.open(location.origin + localStorage.getItem('VirtualPath')+'/dashboard/page/ChangeOnDateReport');
+      });
+
+      let groupsWrapper = this.createElement('div', { className: 'group-btns' }, 
+      groupViewAppeals, groupRegAppeals, groupSearchTable, groupCall, 
+      groupCarChangeReport, groupChangeOnDateReport);
 
       CONTAINER.appendChild(groupsWrapper);
     },
