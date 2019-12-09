@@ -1,6 +1,5 @@
 (function () {
     return {
-        // title: 'Автомобиль и пробег за период',
         config: {
             query: {
                 code: 'SingleCarReport',
@@ -40,9 +39,7 @@
                     caption: 'Пробег за отчетный период',
                     alignment: 'center'
                 },
-
             ],
-
             keyExpr: 'Id',
             showBorders: false,
             showColumnLines: true,
@@ -64,27 +61,23 @@
         init: function () {
             this.dataGridInstance.height = window.innerHeight / 2 - 150;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
-
             let getUrlParams = window
                 .location
                 .search
                 .replace('?', '')
                 .split('&')
                 .reduce(function (p, e) {
-                    var a = e.split('=');
+                    let a = e.split('=');
                     p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
                     return p;
                 }, {}
                 );
             this.car = +getUrlParams.car_id;
             this.dateTo = new Date(getUrlParams.dateTo);
-            this.dateFrom = new Date(getUrlParams.dateFrom);
-             
+            this.dateFrom = new Date(getUrlParams.dateFrom);   
         },
         getFiltersParams: function (message) {
-            // let period = message.package.value.values.find(f => f.name === 'period').value;
             let filterCar = message.package.value.values.find(f => f.name === 'car').value;
-            //  car = this.car === null ? 0 :  car === '' ? 0 : car.value ;
             if (filterCar !== null && filterCar !== "") {
               this.config.query.parameterValues = [
                   { key: '@dateFrom', value: this.dateFrom },
@@ -100,9 +93,8 @@
               ];
               this.loadData(this.afterLoadDataHandler);
             }
-           // debugger;
         },
-        afterLoadDataHandler: function (data) {
+        afterLoadDataHandler: function () {
             this.render();
         },
         destroy: function () {

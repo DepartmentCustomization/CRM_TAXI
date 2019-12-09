@@ -42,17 +42,6 @@
                     alignment: 'center'
                 }
             ],
-            // summary: {
-            //     totalItems: [
-            //         {
-            //             column: "questionQty",
-            //             summaryType: "sum",
-            //             customizeText: function(data) {
-            //                 return "Разом: " + data.value;
-            //             }
-            //         }
-            //     ]
-            // },        
             keyExpr: 'Id',
             scrolling: {
                 mode: 'virtual'
@@ -81,9 +70,7 @@
         init: function () {
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
             this.sub1  =  this.messageService.subscribe( 'sendCarId', this.getCarId, this);
-
             this.dataGridInstance.onCellClick.subscribe(e => {
-              //  debugger;
                 if(e.column.dataField === "name" && e.row !== undefined){
                     this.goToDashboard('CarChangeReport', 
                     {queryParams: 
@@ -93,9 +80,7 @@
                     });
                 }
             });
-
             this.dataGridInstance.height = window.innerHeight - 150;
-           
         },
         showTopQuestionsTable: function () {
             document.getElementById('cars_report').style.display = 'block';
@@ -123,16 +108,12 @@
             }
             return trueDate;
         },
-
         getFiltersParams: function (message) {
-
             let period = message.package.value.values.find(f => f.name === 'period').value;
-
             if (period !== null) {
                 if (period.dateFrom !== '' && period.dateTo !== '') {
                     this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
-
                     this.config.query.parameterValues = [
                         { key: '@dateFrom', value: this.dateFrom },
                         { key: '@dateTo', value: this.dateTo },
@@ -148,9 +129,9 @@
                 return valuesList.length > 0 ? valuesList : [];
             } else {
                 return [];
-            };
+            }
         },
-        afterLoadDataHandler: function (data) {
+        afterLoadDataHandler: function () {
             this.render();
         },
         destroy: function () {

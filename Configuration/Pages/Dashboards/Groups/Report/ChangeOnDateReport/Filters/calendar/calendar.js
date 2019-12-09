@@ -22,8 +22,7 @@
             this.yourFunctionName(date);
         },
         initValue: function () {
-              let calendar = new Date(Date.now())
-
+            let calendar = new Date(Date.now())
             this.setDefaultValue(calendar);
         },
         yourFunctionName: function (value) {

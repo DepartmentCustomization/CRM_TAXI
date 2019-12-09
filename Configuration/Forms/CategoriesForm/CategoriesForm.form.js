@@ -1,13 +1,12 @@
+/* eslint-disable line-comment-position */
 (function () {
     return {
-
-        init: function (event) {
+        init: function () {
             document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
             if (this.state == "create") {
                 //Кнопка "Сохранить" при открытии на create
                 this.checkUserRole();
-
-                document.getElementById('save_category').addEventListener("click", function (event) {
+                document.getElementById('save_category').addEventListener("click", function () {
                     const queryForSaveCategory = {
                         queryCode: 'InsertCategories',
                         parameterValues: [
@@ -45,16 +44,14 @@
                      });
                 }.bind(this));
             }
-
             else if (this.state == "update") {
-                //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
-
                 if (document.getElementById('category_name').disabled == true) {
                     document.getElementById("save_category").style.display = "none";
                     document.getElementById("clear_category").style.display = "none";
                 }
-                document.getElementById('save_category').addEventListener("click", function (event) {
+                //Кнопка "Сохранить" при открытии на update
+                document.getElementById('save_category').addEventListener("click", function () {
                     const queryForSaveCategory = {
                         queryCode: 'UpdateCategories',
                         parameterValues: [
@@ -94,8 +91,7 @@
                         }
                     });
                 }.bind(this));
-            };
-
+            }
             this.checkSaveAvailable();
             this.checkClearAvailable();
             // При изменении полей проверить, можно ли сохранять/очищать
@@ -103,7 +99,6 @@
             this.form.onControlValueChanged('operational_period_km', this.checkSaveAvailable);
             this.form.onControlValueChanged('operational_period_day', this.checkSaveAvailable);
             this.form.onControlValueChanged('min_count_stock', this.checkSaveAvailable);
-
             this.form.onControlValueChanged('category_name', this.checkClearAvailable);
             this.form.onControlValueChanged('operational_period_km', this.checkClearAvailable);
             this.form.onControlValueChanged('operational_period_day', this.checkClearAvailable);
@@ -112,9 +107,7 @@
             document.getElementById('clear_category').addEventListener("click", function (event) {
                 this.clearFields();
             }.bind(this));
-
-            //END INIT    
-        },
+        }, //END INIT    
         // Проверка роли пользователя
         checkUserRole: function () {
             const queryForCheckUserRole = {
@@ -127,16 +120,13 @@
                 ]
             };
             this.queryExecutor.getValues(queryForCheckUserRole).subscribe(data => {
-                console.log('Роль: ' + data.rows[0].values[0]);
                 if (data.rows[0].values[0] != 'Администраторы') {
                     this.navigateTo('sections/Categories/view/' + this.id)
                 }
             });
         },
-
         // Очистить поля формы
         clearFields: function () {
-
             this.form.setControlValue('category_name', null)
             this.form.setControlValue('operational_period_km', null)
             this.form.setControlValue('operational_period_day', null)

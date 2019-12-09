@@ -2,7 +2,7 @@
     return {
         config: {
             query: {
-                code: 'ChangeOnDateReport',
+                code: 'PartsFailedReport',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -14,41 +14,18 @@
                     dataField: 'part_name',
                     caption: 'Наименование запчасти',
                 }, {
-                    dataField: 'articul',
-                    caption: 'Артикул',
-                    alignment: 'center'
-                }, {
                     dataField: 'manufacturer',
                     caption: 'Производитель',
-                    alignment: 'center'
                 }, {
                     dataField: 'provider',
                     caption: 'Поставщик',
+                }, {
+                    dataField: 'fact_run',
+                    caption: 'Фактический пробег запчасти (км)',
                     alignment: 'center'
                 }, {
-                    dataField: 'run_km_period',
-                    caption: 'Эксплуатационный период (км)',
-                    alignment: 'center',
-                }, {
-                    dataField: 'run_day_period',
-                    caption: 'Эксплуатационный период (дни)',
-                    alignment: 'center'
-                }, {
-                    dataField: 'cars_number',
-                    caption: 'Госномер автомобиля',
-                    alignment: 'center'
-                }, {
-                    dataField: 'part_price',
-                    caption: 'Цена',
-                    alignment: 'center'
-                },
-                {
-                    dataField: 'qty',
-                    caption: 'Количество',
-                    alignment: 'center'
-                }, {
-                    dataField: 'sum_price',
-                    caption: 'Стоимость',
+                    dataField: 'cars_name',
+                    caption: 'Позывной',
                     alignment: 'center'
                 }
             ],
@@ -78,25 +55,14 @@
             groupingAutoExpandAll: null,
         },
         init: function () {
-            this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
             this.dataGridInstance.height = window.innerHeight - 150;
+            this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
         },
         showTopQuestionsTable: function () {
-            document.getElementById('cars_report').style.display = 'block';
+            document.getElementById('part_qty_report').style.display = 'block';
         },
-        getOrganizationId: function (message) {
-            this.car_id = message.car_id;
-        },
-        getFiltersParams: function (message) {
-            let calendar = message.package.value.values.find(f => f.name === 'calendar').value;
-            if (calendar !== null) {
-                if (calendar !== '') {
-                    this.config.query.parameterValues = [
-                        { key: '@dateTo', value: calendar },
-                    ];
-                    this.loadData(this.afterLoadDataHandler);
-                }
-            }
+        getFiltersParams: function () {
+            this.loadData(this.afterLoadDataHandler);
         },
         extractOrgValues: function (val) {
             if (val !== '') {
