@@ -21,6 +21,7 @@
   "homepage": "https://github.com/DepartmentCustomization/CRM_TAXI#readme",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^6.7.2"
+    "eslint": "^6.7.2",
+    "tsqllint": "^1.11.0"
   }
 }
