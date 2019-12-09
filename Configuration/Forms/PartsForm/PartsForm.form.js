@@ -6,7 +6,7 @@
             if (this.state == "create") {
                 //Кнопка "Сохранить" при открытии на create
                 this.checkUserRole();
-                document.getElementById('save_part').addEventListener("click", function (event) {
+                document.getElementById('save_part').addEventListener("click", function () {
                     const queryForSavePart = {
                         queryCode: 'InsertParts',
                         parameterValues: [
@@ -35,58 +35,55 @@
                     this.queryExecutor.getValues(queryForSavePart).subscribe(data => {
                         if (data != undefined) {
                             this.form.markAsSaved();
-                            this.openPopUpInfoDialog(data.rows[0].values[0]);                    
+                            this.openPopUpInfoDialog(data.rows[0].values[0]);
                             this.navigateTo('sections/Parts/edit/' + data.rows[0].values[1]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка добавления данных');
                         }
                     });
                 }.bind(this));
-            }
-            else if (this.state == "update") {
+            } else if (this.state == "update") {
                 //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
                 if (document.getElementById('part_name').disabled == true) {
                     document.getElementById("save_part").style.display = "none";
                     document.getElementById("clear_part").style.display = "none";
                 }
-                document.getElementById('save_part').addEventListener("click", function (event) {
+                document.getElementById('save_part').addEventListener("click", function () {
                     const queryForUpdatePart = {
                         queryCode: 'UpdateParts',
                         parameterValues: [
-                                {
-                                    key: '@part_name',
-                                    value: this.form.getControlValue('part_name')
-                                },
-                                {
-                                    key: '@articul',
-                                    value: this.form.getControlValue('articul')
-                                },
-                                {
-                                    key: '@manufacturer',
-                                    value: this.form.getControlValue('manufacturer')
-                                },
-                                {
-                                    key: '@category_id',
-                                    value: this.form.getControlValue('category')
-                                },
-                                {
-                                    key: '@user_id',
-                                    value: this.user
-                                },
-                                {
-                                    key: '@Id',
-                                    value: this.id
-                                }
-                            ]
+                            {
+                                key: '@part_name',
+                                value: this.form.getControlValue('part_name')
+                            },
+                            {
+                                key: '@articul',
+                                value: this.form.getControlValue('articul')
+                            },
+                            {
+                                key: '@manufacturer',
+                                value: this.form.getControlValue('manufacturer')
+                            },
+                            {
+                                key: '@category_id',
+                                value: this.form.getControlValue('category')
+                            },
+                            {
+                                key: '@user_id',
+                                value: this.user
+                            },
+                            {
+                                key: '@Id',
+                                value: this.id
+                            }
+                        ]
                     };
                     this.queryExecutor.getValues(queryForUpdatePart).subscribe(data => {
                         if (data != undefined) {
                             this.form.markAsSaved();
                             this.openPopUpInfoDialog(data.rows[0].values[0]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка изменения данных');
                         }
                     });
@@ -104,7 +101,7 @@
             this.form.onControlValueChanged('manufacturer', this.checkClearAvailable);
             this.form.onControlValueChanged('category', this.checkClearAvailable);
             //Кнопка "Отменить"
-            document.getElementById('clear_part').addEventListener("click", function (event) {
+            document.getElementById('clear_part').addEventListener("click", function () {
                 this.clearFields();
             }.bind(this));
             //END INIT    
@@ -143,11 +140,9 @@
                 this.form.getControlValue('articul') != "" &&
                 this.form.getControlValue('manufacturer') != "" &&
                 this.form.getControlValue('category') != ""
-            )
-                 {
+            ) {
                 document.getElementById('save_part').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('save_part').disabled = true;
             }
         },
@@ -159,8 +154,7 @@
                 this.form.getControlValue('category') != null
             ) {
                 document.getElementById('clear_part').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('clear_part').disabled = true;
             }
         }

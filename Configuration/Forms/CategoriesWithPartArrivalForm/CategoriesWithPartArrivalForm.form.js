@@ -38,11 +38,11 @@
             this.form.onControlValueChanged('part_price', this.calculateArrivalSum);
             this.form.onControlValueChanged('part_quantity', this.calculateArrivalSum);
             //Кнопка "Очистить"
-            document.getElementById('clear_arrival').addEventListener("click", function (event) {
+            document.getElementById('clear_arrival').addEventListener("click", function () {
                 this.clearArrivalValues();
             }.bind(this));
             //Кнопка "Добавить артикул"
-            document.getElementById('new_article').addEventListener("click", function (event) {
+            document.getElementById('new_article').addEventListener("click", function () {
                 const CreateArticul_callback = (response) => {
                     if (response) {
                         const newPart = {
@@ -158,8 +158,7 @@
                         this.form.markAsSaved();
                         this.openPopUpInfoDialog(data.rows[0].values[0]);
                         this.clearArrivalValues();
-                    }
-                    else {
+                    } else {
                         this.openPopUpInfoDialog('Ошибка изменения данных');
                     }
                 });
@@ -206,8 +205,7 @@
                 this.form.setControlValue('part_name', null);
                 this.form.setControlValue('manufacturer', null);
                 document.getElementById('new_article').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('new_article').disabled = true;
             }
         },
@@ -225,8 +223,7 @@
                 (this.form.getControlValue('invoice_number') != null && this.form.getControlValue('invoice_number') != "")
             ) {
                 document.getElementById('clear_arrival').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('clear_arrival').disabled = true;
             }
         },
@@ -244,8 +241,7 @@
                 (this.form.getControlValue('invoice_number') != null && this.form.getControlValue('invoice_number') != "")
             ) {
                 document.getElementById('add_arrival').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('add_arrival').disabled = true;
             }
         },

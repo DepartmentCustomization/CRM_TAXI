@@ -6,8 +6,8 @@
             if (this.state == "create") {
                 this.form.setControlVisibility('cars_run', false);
                 //При открытии на create
-                this.checkUserRole();             
-                document.getElementById('save_car').addEventListener("click", function (event) {
+                this.checkUserRole();
+                document.getElementById('save_car').addEventListener("click", function () {
                     const queryForSaveCar = {
                         queryCode: 'InsertCars',
                         parameterValues: [
@@ -36,15 +36,13 @@
                     this.queryExecutor.getValues(queryForSaveCar).subscribe(data => {
                         if (data != undefined) {
                             this.form.markAsSaved();
-                            this.openPopUpInfoDialog(data.rows[0].values[0]);                         
-                        }
-                        else {
+                            this.openPopUpInfoDialog(data.rows[0].values[0]);
+                        } else {
                             this.openPopUpInfoDialog('Ошибка добавления данных');
                         }
                     });
                 }.bind(this));
-            }
-            else if (this.state == "update") {
+            } else if (this.state == "update") {
                 //Кнопка "Сохранить" при открытии на update
                 this.form.disableControl('cars_run');
                 this.checkUserRole();
@@ -52,42 +50,41 @@
                     document.getElementById("save_car").style.display = "none";
                     document.getElementById("clear_car").style.display = "none";
                 }
-                document.getElementById('save_car').addEventListener("click", function (event) {
-                    const queryForUpdateCar= {
+                document.getElementById('save_car').addEventListener("click", function () {
+                    const queryForUpdateCar = {
                         queryCode: 'UpdateCars',
                         parameterValues: [
-                                {
-                                    key: '@cars_name',
-                                    value: this.form.getControlValue('cars_name')
-                                },
-                                {
-                                    key: '@cars_number',
-                                    value: this.form.getControlValue('cars_number')
-                                },
-                                {
-                                    key: '@cars_mark',
-                                    value: this.form.getControlValue('cars_mark')
-                                },
-                                {
-                                    key: '@cars_year',
-                                    value: this.form.getControlValue('cars_year')
-                                },
-                                {
-                                    key: '@user_id',
-                                    value: this.user
-                                },
-                                {
-                                    key: '@Id',
-                                    value: this.id
-                                }
-                            ]
+                            {
+                                key: '@cars_name',
+                                value: this.form.getControlValue('cars_name')
+                            },
+                            {
+                                key: '@cars_number',
+                                value: this.form.getControlValue('cars_number')
+                            },
+                            {
+                                key: '@cars_mark',
+                                value: this.form.getControlValue('cars_mark')
+                            },
+                            {
+                                key: '@cars_year',
+                                value: this.form.getControlValue('cars_year')
+                            },
+                            {
+                                key: '@user_id',
+                                value: this.user
+                            },
+                            {
+                                key: '@Id',
+                                value: this.id
+                            }
+                        ]
                     };
                     this.queryExecutor.getValues(queryForUpdateCar).subscribe(data => {
                         if (data != undefined) {
                             this.form.markAsSaved();
                             this.openPopUpInfoDialog(data.rows[0].values[0]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка изменения данных');
                         }
                     });
@@ -105,7 +102,7 @@
             this.form.onControlValueChanged('cars_mark', this.checkClearAvailable);
             this.form.onControlValueChanged('cars_year', this.checkClearAvailable);
             //Кнопка "Отменить"
-            document.getElementById('clear_car').addEventListener("click", function (event) {
+            document.getElementById('clear_car').addEventListener("click", function () {
                 this.clearFields();
             }.bind(this));
             //END INIT    
@@ -144,11 +141,9 @@
                 this.form.getControlValue('cars_number') != "" &&
                 this.form.getControlValue('cars_mark') != "" &&
                 this.form.getControlValue('cars_year') != ""
-            )
-                 {
+            ) {
                 document.getElementById('save_car').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('save_car').disabled = true;
             }
         },
@@ -160,8 +155,7 @@
                 this.form.getControlValue('cars_year') != null
             ) {
                 document.getElementById('clear_car').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('clear_car').disabled = true;
             }
         }

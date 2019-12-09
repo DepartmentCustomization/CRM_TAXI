@@ -52,8 +52,7 @@
                         if (data != undefined) {
                             this.form.markAsSaved();
                             this.openPopUpInfoDialog(data.rows[0].values[0]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка изменения данных');
                         }
                     });
@@ -84,7 +83,7 @@
             this.form.onControlValueChanged('part_price', this.calculateArrivalSum);
             this.form.onControlValueChanged('part_quantity', this.calculateArrivalSum);
             //Кнопка "Очистить"
-            document.getElementById('clear_part_arrival').addEventListener("click", function (event) {
+            document.getElementById('clear_part_arrival').addEventListener("click", function () {
                 this.clearArrivalValues();
             }.bind(this));
         },
@@ -158,8 +157,7 @@
                 (this.form.getControlValue('part_price') != null && this.form.getControlValue('part_price') != "")
             ) {
                 document.getElementById('clear_part_arrival').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('clear_part_arrival').disabled = true;
             }
         },
@@ -177,8 +175,7 @@
                 (this.form.getControlValue('invoice_number') != null && this.form.getControlValue('invoice_number') != "")
             ) {
                 document.getElementById('save_part_arrival').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('save_part_arrival').disabled = true;
             }
         },

@@ -42,8 +42,7 @@
                     if (data != undefined) {
                         this.form.markAsSaved();
                         this.openPopUpInfoDialog(data.rows[0].values[0]);
-                    }
-                    else {
+                    } else {
                         this.openPopUpInfoDialog('Ошибка изменения данных');
                     }
                 });
@@ -61,8 +60,7 @@
         checkPartChooseAvailable: function () {
             if (this.form.getControlValue('car') != null && this.form.getControlValue('car') != "") {
                 this.form.enableControl('part');
-            }
-            else {
+            } else {
                 if (!this.form.disableControl('part')) {
                     this.form.disableControl('part');
                 }
@@ -75,8 +73,7 @@
                 && this.form.getControlValue('invoice_consumption') != ""
             ) {
                 document.getElementById('save_part_change').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('save_part_change').disabled = true;
             }
         }

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "hookConfig": "git config core.hooksPath .\\.githooks",
+    "eslint": ".\\node_modules\\.bin\\eslint --ext .js .\\Configuration\\",
+    "eslint-fix": "npm run eslint --fix"
   },
   "repository": {
     "type": "git",

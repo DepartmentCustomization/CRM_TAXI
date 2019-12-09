@@ -6,7 +6,7 @@
             if (this.state == "create") {
                 //Кнопка "Сохранить" при открытии на create
                 this.checkUserRole();
-                document.getElementById('save_provider').addEventListener("click", function (event) {
+                document.getElementById('save_provider').addEventListener("click", function () {
                     const queryForSaveProvider = {
                         queryCode: 'InsertProviders',
                         parameterValues: [
@@ -27,50 +27,47 @@
                     this.queryExecutor.getValues(queryForSaveProvider).subscribe(data => {
                         if (data != undefined) {
                             this.form.markAsSaved();
-                            this.openPopUpInfoDialog(data.rows[0].values[0]);                    
+                            this.openPopUpInfoDialog(data.rows[0].values[0]);
                             this.navigateTo('sections/Providers/edit/' + data.rows[0].values[1]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка добавления данных');
                         }
                     });
                 }.bind(this));
-            }
-            else if (this.state == "update") {
+            } else if (this.state == "update") {
                 //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
                 if (document.getElementById('provider').disabled == true) {
                     document.getElementById("save_provider").style.display = "none";
                     document.getElementById("clear_provider").style.display = "none";
                 }
-                document.getElementById('save_provider').addEventListener("click", function (event) {
+                document.getElementById('save_provider').addEventListener("click", function () {
                     const queryForUpdateProvider = {
                         queryCode: 'UpdateProviders',
                         parameterValues: [
-                                {
-                                    key: '@provider',
-                                    value: this.form.getControlValue('provider')
-                                },
-                                {
-                                    key: '@provider_conditions',
-                                    value: this.form.getControlValue('provider_conditions')
-                                },
-                                {
-                                    key: '@user_id',
-                                    value: this.user
-                                },
-                                {
-                                    key: '@Id',
-                                    value: this.id
-                                }
-                            ]
+                            {
+                                key: '@provider',
+                                value: this.form.getControlValue('provider')
+                            },
+                            {
+                                key: '@provider_conditions',
+                                value: this.form.getControlValue('provider_conditions')
+                            },
+                            {
+                                key: '@user_id',
+                                value: this.user
+                            },
+                            {
+                                key: '@Id',
+                                value: this.id
+                            }
+                        ]
                     };
                     this.queryExecutor.getValues(queryForUpdateProvider).subscribe(data => {
                         if (data != undefined) {
                             this.openPopUpInfoDialog(data.rows[0].values[0]);
                             this.form.markAsSaved();
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка изменения данных');
                         }
                     });
@@ -113,12 +110,10 @@
         },
         // Проверка на допустимость сохранения
         checkSaveAvailable: function () {
-            if (this.form.getControlValue('provider') != null &&       
-                this.form.getControlValue('provider') != "" )
-                 {
+            if (this.form.getControlValue('provider') != null &&
+                this.form.getControlValue('provider') != "") {
                 document.getElementById('save_provider').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('save_provider').disabled = true;
             }
         },
@@ -128,8 +123,7 @@
                 this.form.getControlValue('provider_conditions') != null
             ) {
                 document.getElementById('clear_provider').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('clear_provider').disabled = true;
             }
         }

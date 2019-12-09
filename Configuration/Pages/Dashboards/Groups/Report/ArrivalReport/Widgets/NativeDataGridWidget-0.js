@@ -78,10 +78,18 @@
                 let HH = date.getUTCHours()
                 let mm = date.getMinutes();
                 MM += 1;
-                if ((dd.toString()).length === 1) { dd = '0' + dd; }
-                if ((MM.toString()).length === 1) { MM = '0' + MM; }
-                if ((HH.toString()).length === 1) { HH = '0' + HH; }
-                if ((mm.toString()).length === 1) { mm = '0' + mm; }
+                if ((dd.toString()).length === 1) {
+ dd = '0' + dd; 
+}
+                if ((MM.toString()).length === 1) {
+ MM = '0' + MM; 
+}
+                if ((HH.toString()).length === 1) {
+ HH = '0' + HH; 
+}
+                if ((mm.toString()).length === 1) {
+ mm = '0' + mm; 
+}
                 trueDate = dd + '.' + MM + '.' + yyyy;
             } else {
                 trueDate = ' ';

@@ -33,18 +33,16 @@
                         ]
                     };
                     this.queryExecutor.getValues(queryForSaveCategory).subscribe(data => {
-                        if(data != undefined) {
+                        if (data != undefined) {
                             this.form.markAsSaved();
-                            this.openPopUpInfoDialog(data.rows[0].values[0]);                    
+                            this.openPopUpInfoDialog(data.rows[0].values[0]);
                             this.navigateTo('sections/Categories/edit/' + data.rows[0].values[1]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка добавления данных');
                         }
-                     });
+                    });
                 }.bind(this));
-            }
-            else if (this.state == "update") {
+            } else if (this.state == "update") {
                 this.checkUserRole();
                 if (document.getElementById('category_name').disabled == true) {
                     document.getElementById("save_category").style.display = "none";
@@ -82,11 +80,10 @@
                         ]
                     };
                     this.queryExecutor.getValues(queryForSaveCategory).subscribe(data => {
-                        if(data != undefined) {
+                        if (data != undefined) {
                             this.form.markAsSaved();
                             this.openPopUpInfoDialog(data.rows[0].values[0]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка изменения данных');
                         }
                     });
@@ -104,7 +101,7 @@
             this.form.onControlValueChanged('operational_period_day', this.checkClearAvailable);
             this.form.onControlValueChanged('min_count_stock', this.checkClearAvailable);
             //Кнопка "Очистить"
-            document.getElementById('clear_category').addEventListener("click", function (event) {
+            document.getElementById('clear_category').addEventListener("click", function () {
                 this.clearFields();
             }.bind(this));
         }, //END INIT    
@@ -145,8 +142,7 @@
                 this.form.getControlValue('min_count_stock') != ""
             ) {
                 document.getElementById('save_category').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('save_category').disabled = true;
             }
         },
@@ -158,8 +154,7 @@
                 this.form.getControlValue('min_count_stock') != null
             ) {
                 document.getElementById('clear_category').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('clear_category').disabled = true;
             }
         }

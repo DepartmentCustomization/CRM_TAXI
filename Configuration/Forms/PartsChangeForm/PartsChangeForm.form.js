@@ -57,8 +57,7 @@
                             this.form.markAsSaved();
                             this.openPopUpInfoDialog(data.rows[0].values[0]);
                             this.navigateTo('sections/PartsChange/edit/' + data.rows[0].values[1]);
-                        }
-                        else {
+                        } else {
                             this.openPopUpInfoDialog('Ошибка изменения данных');
                         }
                     });
@@ -100,8 +99,7 @@
                     { parameterCode: '@car', parameterValue: car },
                     { parameterCode: '@changeId', parameterValue: this.id }];
                 this.form.setControlParameterValues('old_articul', changeParam);
-            }
-            else {
+            } else {
                 this.form.setControlValue('old_articul', { key: null, value: null });
                 this.form.setControlParameterValues('old_articul', null);
             }
@@ -114,8 +112,7 @@
                 this.form.getControlValue('new_articul') != ""
             ) {
                 document.getElementById('update_part_change').disabled = false;
-            }
-            else {
+            } else {
                 document.getElementById('update_part_change').disabled = true;
             }
         },
@@ -124,8 +121,7 @@
                 this.form.setControlValue('part_name', null);
                 this.form.setControlValue('manufacturer', null);
                 this.form.setControlValue('part_price', null);
-            }
-            else {
+            } else {
                 this.getPartPrice();
             }
         },
