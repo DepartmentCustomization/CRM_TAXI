@@ -17,6 +17,7 @@ module.exports = {
         "line-comment-position": ["warn", { "position": "beside" }],
         "no-inline-comments": "warn",
         "no-console": "error",
-        "no-debugger": "error"
+        "no-debugger": "error",
+        "brace-style": ["error", "1tbs"]
     }
 };
