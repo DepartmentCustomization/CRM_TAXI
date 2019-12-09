@@ -1,12 +1,11 @@
+/* eslint-disable line-comment-position */
 (function () {
     return {
-
-        init: function (event) {
+        init: function () {
             document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
             if (this.state == "create") {
                 //Кнопка "Сохранить" при открытии на create
                 this.checkUserRole();
-
                 document.getElementById('save_part').addEventListener("click", function (event) {
                     const queryForSavePart = {
                         queryCode: 'InsertParts',
@@ -45,11 +44,9 @@
                     });
                 }.bind(this));
             }
-
             else if (this.state == "update") {
                 //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
-
                 if (document.getElementById('part_name').disabled == true) {
                     document.getElementById("save_part").style.display = "none";
                     document.getElementById("clear_part").style.display = "none";
@@ -94,8 +91,7 @@
                         }
                     });
                 }.bind(this));
-            };
-
+            }
             this.checkSaveAvailable();
             this.checkClearAvailable();
             // При изменении полей проверить, можно ли сохранять/очищать
@@ -103,7 +99,6 @@
             this.form.onControlValueChanged('articul', this.checkSaveAvailable);
             this.form.onControlValueChanged('manufacturer', this.checkSaveAvailable);
             this.form.onControlValueChanged('category', this.checkSaveAvailable);
-
             this.form.onControlValueChanged('part_name', this.checkClearAvailable);
             this.form.onControlValueChanged('articul', this.checkClearAvailable);
             this.form.onControlValueChanged('manufacturer', this.checkClearAvailable);
@@ -112,7 +107,6 @@
             document.getElementById('clear_part').addEventListener("click", function (event) {
                 this.clearFields();
             }.bind(this));
-
             //END INIT    
         },
         // Проверка роли пользователя
@@ -127,16 +121,13 @@
                 ]
             };
             this.queryExecutor.getValues(queryForCheckUserRole).subscribe(data => {
-                console.log('Роль: ' + data.rows[0].values[0]);
                 if (data.rows[0].values[0] != 'Администраторы') {
                     this.navigateTo('sections/Parts/view/' + this.id)
                 }
             });
         },
-
         // Очистить поля формы
         clearFields: function () {
-
             this.form.setControlValue('part_name', null)
             this.form.setControlValue('articul', null)
             this.form.setControlValue('manufacturer', null)
@@ -148,7 +139,6 @@
                 this.form.getControlValue('articul') != null &&
                 this.form.getControlValue('manufacturer') != null &&
                 this.form.getControlValue('category') != null &&
-
                 this.form.getControlValue('part_name') != "" &&
                 this.form.getControlValue('articul') != "" &&
                 this.form.getControlValue('manufacturer') != "" &&

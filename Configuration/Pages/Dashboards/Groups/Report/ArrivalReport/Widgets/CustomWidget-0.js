@@ -19,7 +19,7 @@
     ,
     init: function() {
     },
-    afterViewInit: function(data) {
+    afterViewInit: function() {
         const reportTitle = document.getElementById('reportTitle');
         const organizationNameInput = document.createElement('span');
         reportTitle.appendChild(organizationNameInput);

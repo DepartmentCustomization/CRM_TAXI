@@ -1,6 +1,5 @@
 (function () {
     return {
-        //  title: 'Автомобиль и расход за период',
         config: {
             query: {
                 code: 'SingleCarReport2',
@@ -57,33 +56,32 @@
             },
             keyExpr: 'Id',
             showBorders: false,
-        showColumnLines: true,
-        showRowLines: true,
-        remoteOperations: null,
-        allowColumnReordering: null,
-        rowAlternationEnabled: null,
-        columnAutoWidth: null,
-        hoverStateEnabled: true,
-        columnWidth: null,
-        wordWrapEnabled: true,
-        allowColumnResizing: true,
-        showFilterRow: true,
-        showHeaderFilter: false,
-        showColumnChooser: false,
-        showColumnFixing: true,
-        groupingAutoExpandAll: null,      
+            showColumnLines: true,
+            showRowLines: true,
+            remoteOperations: null,
+            allowColumnReordering: null,
+            rowAlternationEnabled: null,
+            columnAutoWidth: null,
+            hoverStateEnabled: true,
+            columnWidth: null,
+            wordWrapEnabled: true,
+            allowColumnResizing: true,
+            showFilterRow: true,
+            showHeaderFilter: false,
+            showColumnChooser: false,
+            showColumnFixing: true,
+            groupingAutoExpandAll: null,
         },
         init: function () {
             this.dataGridInstance.height = window.innerHeight / 2 - 150;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
-
             let getUrlParams = window
                 .location
                 .search
                 .replace('?', '')
                 .split('&')
                 .reduce(function (p, e) {
-                    var a = e.split('=');
+                    let a = e.split('=');
                     p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
                     return p;
                 }, {}
@@ -93,27 +91,24 @@
             this.dateFrom = new Date(getUrlParams.dateFrom);
         },
         getFiltersParams: function (message) {
-          // let period = message.package.value.values.find(f => f.name === 'period').value;
-          let filterCar = message.package.value.values.find(f => f.name === 'car').value;
-      //  car = this.car === null ? 0 :  car === '' ? 0 : car.value ;
-
-      if (filterCar !== null && filterCar !== "") {
-        this.config.query.parameterValues = [
-            { key: '@dateFrom', value: this.dateFrom },
-            { key: '@dateTo', value: this.dateTo },
-            { key: '@carId', value: filterCar.value },
-        ];
-        this.loadData(this.afterLoadDataHandler);
-    } else {
-        this.config.query.parameterValues = [
-            { key: '@dateFrom', value: this.dateFrom },
-            { key: '@dateTo', value: this.dateTo },
-            { key: '@carId', value: this.car },
-        ];
-        this.loadData(this.afterLoadDataHandler);
-    }
+            let filterCar = message.package.value.values.find(f => f.name === 'car').value;
+            if (filterCar !== null && filterCar !== "") {
+                this.config.query.parameterValues = [
+                    { key: '@dateFrom', value: this.dateFrom },
+                    { key: '@dateTo', value: this.dateTo },
+                    { key: '@carId', value: filterCar.value },
+                ];
+                this.loadData(this.afterLoadDataHandler);
+            } else {
+                this.config.query.parameterValues = [
+                    { key: '@dateFrom', value: this.dateFrom },
+                    { key: '@dateTo', value: this.dateTo },
+                    { key: '@carId', value: this.car },
+                ];
+                this.loadData(this.afterLoadDataHandler);
+            }
         },
-        afterLoadDataHandler: function (data) {
+        afterLoadDataHandler: function () {
             this.render();
         },
         destroy: function () {

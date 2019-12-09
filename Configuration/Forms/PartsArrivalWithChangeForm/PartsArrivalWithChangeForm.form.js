@@ -1,22 +1,18 @@
+/* eslint-disable line-comment-position */
 (function () {
     return {
-
-        init: function (event) {
+        init: function () {
             document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
             document.getElementById('save_part_change').disabled = true;
-
             this.form.onControlValueChanged('car', this.getAutoForQuery);
             this.form.onControlValueChanged('car', this.checkPartChooseAvailable);
-
             this.form.disableControl('part');
-
             // При изменении проверять, достаточно ли заполнены поля
             this.form.onControlValueChanged('car', this.checkSaveChangeAvailable);
             this.form.onControlValueChanged('part', this.checkSaveChangeAvailable);
             this.form.onControlValueChanged('invoice_consumption', this.checkSaveChangeAvailable);
-
             //Кнопка "Сохранить" - выполнение установки (замены) запчасти на авто
-            document.getElementById('save_part_change').addEventListener("click", function (event) {
+            document.getElementById('save_part_change').addEventListener("click", function () {
                 const queryForMakePartChange = {
                     queryCode: 'MakePartChange',
                     parameterValues: [
@@ -52,22 +48,16 @@
                     }
                 });
             }.bind(this));
-
-        },  //END INIT 
-
+        },
         getAutoForQuery: function () {
             if (this.form.getControlValue('car')) {
-
                 let partParams = [
                     { parameterCode: '@car', parameterValue: this.form.getControlValue('car') },
                     { parameterCode: '@category', parameterValue: this.form.getControlValue('category_id') }
                 ];
-
                 this.form.setControlParameterValues('part', partParams);
-
             }
         },
-
         checkPartChooseAvailable: function () {
             if (this.form.getControlValue('car') != null && this.form.getControlValue('car') != "") {
                 this.form.enableControl('part');
@@ -78,7 +68,6 @@
                 }
             }
         },
-
         checkSaveChangeAvailable: function () {
             if (
                 this.form.getControlValue('car') != null && this.form.getControlValue('car') != ""
@@ -91,6 +80,5 @@
                 document.getElementById('save_part_change').disabled = true;
             }
         }
-
     };
 }());

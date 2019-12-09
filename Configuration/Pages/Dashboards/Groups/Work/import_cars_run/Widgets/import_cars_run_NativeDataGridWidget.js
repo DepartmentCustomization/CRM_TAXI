@@ -41,10 +41,10 @@
             this.dataGridInstance.height = window.innerHeight - 200;
             this.sub2 = this.messageService.subscribe('showTable', this.showTable, this);
         },
-        showTable: function (message) {
+        showTable: function () {
             this.loadData(this.afterLoadDataHandler);
         },
-        afterLoadDataHandler: function (data) {
+        afterLoadDataHandler: function () {
             this.render();
         },
         destroy: function () {

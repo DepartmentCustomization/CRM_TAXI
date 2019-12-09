@@ -38,17 +38,6 @@
                     alignment: 'center'
                 }
             ],
-            // summary: {
-            //     totalItems: [
-            //         {
-            //             column: "questionQty",
-            //             summaryType: "sum",
-            //             customizeText: function(data) {
-            //                 return "Разом: " + data.value;
-            //             }
-            //         }
-            //     ]
-            // },        
             keyExpr: 'Id',
             scrolling: {
                 mode: 'virtual'
@@ -83,7 +72,6 @@
         },
         getFiltersParams: function (message) {
             let category = message.package.value.values.find(f => f.name === 'category').value;
-
             if (category !== null && category !== "") {
                 this.config.query.parameterValues = [
                     { key: '@category', value: category.value },
@@ -98,9 +86,9 @@
                 return valuesList.length > 0 ? valuesList : [];
             } else {
                 return [];
-            };
+            }
         },
-        afterLoadDataHandler: function (data) {
+        afterLoadDataHandler: function () {
             this.render();
         },
         destroy: function () {

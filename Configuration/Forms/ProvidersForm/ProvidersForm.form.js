@@ -1,12 +1,11 @@
+/* eslint-disable line-comment-position */
 (function () {
     return {
-
-        init: function (event) {
+        init: function () {
             document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
             if (this.state == "create") {
                 //Кнопка "Сохранить" при открытии на create
                 this.checkUserRole();
-
                 document.getElementById('save_provider').addEventListener("click", function (event) {
                     const queryForSaveProvider = {
                         queryCode: 'InsertProviders',
@@ -37,11 +36,9 @@
                     });
                 }.bind(this));
             }
-
             else if (this.state == "update") {
                 //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
-
                 if (document.getElementById('provider').disabled == true) {
                     document.getElementById("save_provider").style.display = "none";
                     document.getElementById("clear_provider").style.display = "none";
@@ -78,22 +75,18 @@
                         }
                     });
                 }.bind(this));
-            };
-
+            }
             this.checkSaveAvailable();
             this.checkClearAvailable();
             // При изменении полей проверить, можно ли сохранять/очищать
             this.form.onControlValueChanged('provider', this.checkSaveAvailable);
             this.form.onControlValueChanged('provider_conditions', this.checkSaveAvailable);
-
             this.form.onControlValueChanged('provider', this.checkClearAvailable);
             this.form.onControlValueChanged('provider_conditions', this.checkClearAvailable);
-
-            //Кнопка "Отменить"
-            document.getElementById('clear_provider').addEventListener("click", function (event) {
+            //Кнопка "Очистить"
+            document.getElementById('clear_provider').addEventListener("click", function () {
                 this.clearFields();
             }.bind(this));
-
             //END INIT    
         },
         // Проверка роли пользователя
@@ -108,13 +101,11 @@
                 ]
             };
             this.queryExecutor.getValues(queryForCheckUserRole).subscribe(data => {
-                console.log('Роль: ' + data.rows[0].values[0]);
                 if (data.rows[0].values[0] != 'Администраторы') {
                     this.navigateTo('sections/Providers/view/' + this.id)
                 }
             });
         },
-
         // Очистить поля формы
         clearFields: function () {
             this.form.setControlValue('provider', null)

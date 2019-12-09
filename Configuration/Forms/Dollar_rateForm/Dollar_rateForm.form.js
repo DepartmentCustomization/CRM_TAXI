@@ -1,13 +1,12 @@
+/* eslint-disable line-comment-position */
 (function () {
     return {
-
-        init: function (event) {
+        init: function () {
             document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
             if (this.state == "create") {
                 //Кнопка "Сохранить" при открытии на create
                 this.checkUserRole();
-
-                document.getElementById('save_dollar_rate').addEventListener("click", function (event) {
+                document.getElementById('save_dollar_rate').addEventListener("click", function () {
                     const queryForSaveDollar_rate = {
                         queryCode: 'InsertDollar_rate',
                         parameterValues: [
@@ -37,11 +36,9 @@
                     });
                 }.bind(this));
             }
-
             else if (this.state == "update") {
                 //Кнопка "Сохранить" при открытии на update
                 this.checkUserRole();
-
                 if (document.getElementById('dollar_rate').disabled == true) {
                     document.getElementById("save_dollar_rate").style.display = "none";
                     document.getElementById("clear_dollar_rate").style.display = "none";
@@ -78,24 +75,19 @@
                         }
                     });
                 }.bind(this));
-            };
-           
+            }  
             this.checkSaveAvailable();
             this.checkClearAvailable();
             // При изменении полей проверить, можно ли сохранять/очищать
             this.form.onControlValueChanged('dollar_date', this.checkSaveAvailable);
             this.form.onControlValueChanged('dollar_rate', this.checkSaveAvailable);
-
             this.form.onControlValueChanged('dollar_date', this.checkClearAvailable);
             this.form.onControlValueChanged('dollar_rate', this.checkClearAvailable);
-
             //Кнопка "Отменить"
             document.getElementById('clear_dollar_rate').addEventListener("click", function (event) {
                 this.clearFields();
-            }.bind(this));
-
-            //END INIT    
-        },
+            }.bind(this));   
+        },  //END INIT
         // Проверка роли пользователя
         checkUserRole: function () {
             const queryForCheckUserRole = {
@@ -108,13 +100,11 @@
                 ]
             };
             this.queryExecutor.getValues(queryForCheckUserRole).subscribe(data => {
-                console.log('Роль: ' + data.rows[0].values[0]);
                 if (data.rows[0].values[0] != 'Администраторы') {
                     this.navigateTo('sections/Dollar_rate/view/' + this.id)
                 }
             });
         },
-
         // Очистить поля формы
         clearFields: function () {
             this.form.setControlValue('dollar_date', null)
@@ -124,7 +114,6 @@
         checkSaveAvailable: function () {
             if (this.form.getControlValue('dollar_date') != null &&
                 this.form.getControlValue('dollar_rate') != null &&
-
                 this.form.getControlValue('dollar_date') != "" &&
                 this.form.getControlValue('dollar_rate') != ""
             )
@@ -139,7 +128,6 @@
         checkClearAvailable: function () {
             if (this.form.getControlValue('dollar_date') != null ||
                 this.form.getControlValue('dollar_rate') != null
-                
             ) {
                 document.getElementById('clear_dollar_rate').disabled = false;
             }
