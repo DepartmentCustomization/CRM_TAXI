@@ -1,0 +1,23 @@
+{
+  "name": "crm_taxi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DepartmentCustomization/CRM_TAXI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DepartmentCustomization/CRM_TAXI/issues"
+  },
+  "homepage": "https://github.com/DepartmentCustomization/CRM_TAXI#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.7.2"
+  }
+}
